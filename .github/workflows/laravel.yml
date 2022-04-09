@@ -2,9 +2,9 @@ name: Laravel
 
 on:
   push:
-    branches: [ master, user-list]
+    branches: [ master, 02-as-client-i-want-to-get-user-list]
   pull_request:
-    branches: [ master. user-list ]
+    branches: [ master. 02-as-client-i-want-to-get-user-list ]
 
 jobs:
   laravel-tests:
