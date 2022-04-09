@@ -6,6 +6,7 @@ use App\Application\GetUser\GetUserService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller as BaseController;
+use PHPUnit\Util\Exception;
 
 class GetUserController extends BaseController
 {
@@ -26,7 +27,7 @@ class GetUserController extends BaseController
             $user = $this->getUserService->execute($id_user);
         } catch (Exception $exception) {
             return response()->json([
-                'error' => 'Hubo un error al realizar la petición'
+                'error' => $exception->getMessage()
             ], Response::HTTP_BAD_REQUEST);
         }
 

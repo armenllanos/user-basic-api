@@ -58,4 +58,22 @@ class GetUserControllerTest extends TestCase
 
     }
 
+    /**
+     * @test
+     */
+    public function getUserByIdThrowsException()
+    {
+        $this->userDataSource
+            ->expects('findById')
+            ->with('545')
+            ->once()
+            ->andThrow(new Exception());
+
+        $response = $this->get('/api/users/545');
+
+        $this->expectException(Exception::class);
+
+        $response->assertExactJson(['error' => 'Hubo un error al realizar la petición']);
+    }
+
 }

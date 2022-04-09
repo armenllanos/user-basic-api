@@ -14,7 +14,7 @@ class GetUserService
     private $userDataSource;
 
     /**
-     * IsEarlyAdopterService constructor.
+     * GetUserService constructor.
      * @param UserDataSource $userDataSource
      */
     public function __construct(UserDataSource $userDataSource)
@@ -23,14 +23,11 @@ class GetUserService
     }
 
     /**
-     * @param string $user_id
-     * @return User
+     * @param string $id_user
      * @throws Exception
      */
     public function execute(string $id_user)
     {
-        $user = $this->userDataSource->findById($id_user);
-
-        return $user;
+        return $this->userDataSource->findById($id_user);
     }
 }
