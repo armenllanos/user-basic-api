@@ -27,7 +27,7 @@ class GetUserService
      * @return User
      * @throws Exception
      */
-    public function execute(string $id_user): User
+    public function execute(string $id_user)
     {
         $user = $this->userDataSource->findById($id_user);
 
