@@ -28,6 +28,7 @@ class GetUserService
      */
     public function execute(string $id_user)
     {
-        return $this->userDataSource->findById($id_user);
+            $user = $this->userDataSource->findById($id_user);
+            return $user;
     }
 }

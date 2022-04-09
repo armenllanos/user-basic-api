@@ -54,8 +54,7 @@ class GetUserControllerTest extends TestCase
 
         $response = $this->get('/api/users/999');
 
-        $response->assertExactJson(['error' => 'Usuario no encontrado']);
-
+        $response->assertStatus(Response::HTTP_BAD_REQUEST)->assertExactJson(['error' => 'Usuario no encontrado']);
     }
 
     /**
@@ -76,4 +75,21 @@ class GetUserControllerTest extends TestCase
         $response->assertExactJson(['error' => 'Hubo un error al realizar la petición']);
     }
 
+    /**
+     * @test
+     */
+    public function userIdNotEspecifiedInRoute()
+    {
+        $this->userDataSource
+            ->expects('findById')
+            ->withNoArgs()
+            ->never()
+            ->andThrow(new Exception('El id del usuario es obligatorio'));
+
+        $response = $this->get('/api/users/');
+
+        $this->expectException(Exception::class);
+
+        $response->assertExactJson(['error' => 'El id del usuario es obligatorio']);
+    }
 }
