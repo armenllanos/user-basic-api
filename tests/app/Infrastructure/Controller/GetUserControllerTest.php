@@ -27,16 +27,34 @@ class GetUserControllerTest extends TestCase
     /**
      * @test
      */
-    public function userWithGivenIdDoesNotExist()
+    public function userWithGivenIdDoesExist()
     {
+        $user = new User(1, 'email@email.com');
         $this->userDataSource
             ->expects('findById')
-            ->with('999')
-            ->never()
-            ->andThrow(new Exception('User not found'));
+            ->with('1')
+            ->once()
+            ->andReturn($user);
 
-        $response = $this->get('/api/user/id/999');
+        $response = $this->get('/api/users/1');
 
-        $response->assertExactJson(['error' => 'user does not exist']);
+        $response->assertStatus(Response::HTTP_OK)->assertExactJson(['user_id' => 1,'email' => 'email@email.com']);
     }
+
+//    /**
+//     * @test
+//     */
+//    public function userWithGivenIdDoesNotExist()
+//    {
+//        $this->userDataSource
+//            ->expects('findById')
+//            ->with('999')
+//            ->once()
+//            ->andThrow(new Exception('Usuario no encotrado'));
+//
+//        $response = $this->get('/api/users/999');
+//
+//        $response->assertStatus(Response::HTTP_BAD_REQUEST)->assertExactJson(['error' => 'Usuario no encotrado']);
+//
+//    }
 }

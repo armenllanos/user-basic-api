@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Application\EarlyAdopter;
+namespace App\Application\GetUser;
 
 use App\Application\UserDataSource\UserDataSource;
+use App\Domain\User;
 use Exception;
 
-class IsEarlyAdopterService
+class GetUserService
 {
     /**
      * @var UserDataSource
@@ -22,19 +23,14 @@ class IsEarlyAdopterService
     }
 
     /**
-     * @param string $email
-     * @return bool
+     * @param string $user_id
+     * @return User
      * @throws Exception
      */
-    public function execute(string $email): bool
+    public function execute(string $id_user): User
     {
-        $user = $this->userDataSource->findByEmail($email);
-        $isEarlyAdopter = false;
+        $user = $this->userDataSource->findById($id_user);
 
-        if ($user->getId() < 1000) {
-            $isEarlyAdopter = true;
-        }
-
-        return $isEarlyAdopter;
+        return $user;
     }
 }
