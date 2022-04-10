@@ -45,7 +45,7 @@ class UserListTest extends TestCase
      */
     public function userListHappyPath()
     {
-        $users = [1,2,3];
+        $users = ['id: 1','id: 2','id: 3'];
         $this->userDataSource
             ->expects('listUsers')
             ->once()
