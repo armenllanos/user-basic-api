@@ -40,6 +40,21 @@ class UserListTest extends TestCase
 
         $this->assertEquals($result,$users);
     }
+    /**
+     * @test
+     */
+    public function userListHappyPath()
+    {
+        $users = [1,2,3];
+        $this->userDataSource
+            ->expects('listUsers')
+            ->once()
+            ->andReturn($users);
+
+        $result = $this->userListService->execute();
+
+        $this->assertEquals($result,$users);
+    }
 
 
 }
