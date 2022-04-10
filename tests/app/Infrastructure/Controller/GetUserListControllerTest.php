@@ -36,6 +36,21 @@ class GetUserListControllerTest extends TestCase
 
         $response = $this->get('/api/users/list');
 
-        $response->assertExactJson(['list' => ['']]);
+        $response->assertStatus(Response::HTTP_OK)->assertExactJson(['list' => ['']]);
+    }
+    /**
+     * @test
+     */
+    public function userListHappyPathTest()
+    {
+        $users = ['id: 1','id: 2','id: 3'];
+        $this->userDataSource
+            ->expects('listUsers')
+            ->once()
+            ->andReturn($users);
+
+        $response = $this->get('/api/users/list');
+
+        $response->assertStatus(Response::HTTP_OK)->assertExactJson(['list' => ['id: 1','id: 2','id: 3']]);
     }
 }
