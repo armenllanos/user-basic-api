@@ -66,7 +66,7 @@ class GetUserControllerTest extends TestCase
             ->expects('findById')
             ->with('545')
             ->once()
-            ->andThrow(new Exception());
+            ->andThrow(new Exception('Hubo un error al realizar la petición'));
 
         $response = $this->get('/api/users/545');
 
