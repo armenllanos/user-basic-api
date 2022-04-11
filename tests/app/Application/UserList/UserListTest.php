@@ -9,7 +9,7 @@ use Mockery;
 use PHPUnit\Framework\TestCase;
 
 class
-çUserListTest extends TestCase
+UserListTest extends TestCase
 {
     private UserListService $userListService;
     private UserDataSource $userDataSource;
