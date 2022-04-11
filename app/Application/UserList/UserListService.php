@@ -3,6 +3,7 @@
 namespace App\Application\UserList;
 
 use App\Application\UserDataSource\UserDataSource;
+use Exception;
 
 class UserListService
 {
@@ -21,11 +22,11 @@ class UserListService
     }
 
     /**
-     * @return bool
      * @throws Exception
      */
     public function execute(): array
     {
+
         $users = $this->userDataSource->listUsers();
         return $users;
     }
