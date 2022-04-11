@@ -2,9 +2,10 @@ name: Laravel
 
 on:
   push:
-    branches: [ master , 1-as-cliente-i-want-to-get-user-data]
+
+    branches: [ master ]
   pull_request:
-    branches: [ master , 1-as-cliente-i-want-to-get-user-data]
+    branches: [ master]
 
 jobs:
   laravel-tests:
