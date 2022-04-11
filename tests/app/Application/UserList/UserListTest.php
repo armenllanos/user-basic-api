@@ -8,7 +8,8 @@ use Exception;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
-class UserListTest extends TestCase
+class
+çUserListTest extends TestCase
 {
     private UserListService $userListService;
     private UserDataSource $userDataSource;

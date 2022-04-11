@@ -21,4 +21,9 @@ class FakeUserDataSource implements UserDataSource
         }
        return new User($id_user, "testing@email");
     }
+
+    public function listUsers(): array
+    {
+        return ['id: 1','id: 2','id: 3'];
+    }
 }
