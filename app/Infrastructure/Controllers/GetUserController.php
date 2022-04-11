@@ -25,12 +25,13 @@ class GetUserController extends BaseController
     {
         try {
             $user = $this->getUserService->execute($id_user);
+
+            if(is_null($user))
+                return response()->json(['error' => 'Usuario no encontrado'], Response::HTTP_BAD_REQUEST);
         } catch (Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], Response::HTTP_BAD_REQUEST);
         }
 
-        if(is_null($user))
-            return response()->json(['error' => 'Usuario no encontrado'], Response::HTTP_BAD_REQUEST);
 
         return response()->json(['user_id' => $user->getId(), 'email' => $user->getEmail()], Response::HTTP_OK);
 
